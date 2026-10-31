@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+  --color-muted: #f5f5f7;
+  --color-subtle: #6e6e73;
+  --color-line: #e5e5e5;
+  --color-success: #1a7f4b;
+  --color-danger: #c0392b;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-card: 1.5rem;
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1120px;
+  padding-inline: max(1.25rem, env(safe-area-inset-left));
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 4.5rem;
+  @media (min-width: 768px) {
+    padding-block: 7rem;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+  background: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #111;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-pop-in {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
